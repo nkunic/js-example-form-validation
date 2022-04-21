@@ -9,7 +9,8 @@ import './css/style.css';
 var usernameInput = document.querySelector('input[type="text"]');
 var passwordInput = document.querySelector('input[type="password"]');
 var emailInput = document.querySelector('input[type="email"]');
-var btn = document.querySelector('input[type="submit"]');
+//var btn = document.querySelector('input[type="submit"]');
+var btn = document.querySelector('button');
 var form = document.querySelector('form');
 
 function formValidation(event) {
