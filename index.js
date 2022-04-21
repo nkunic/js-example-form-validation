@@ -11,19 +11,20 @@ var passwordInput = document.querySelector('input[type="password"]');
 var emailInput = document.querySelector('input[type="email"]');
 //var btn = document.querySelector('input[type="submit"]');
 var btn = document.querySelector('button');
-var form = document.querySelector('form');
+var form = document.querySelector('.needs-validation');
 var validFeedback = document.querySelector('.valid-feedback');
 var invalidFeedback = document.querySelector('.invalid-feedback');
 
 function formValidation(event) {
-  // User data
+
+  // USER DATA
   var userData = {
     usernameVal: usernameInput.value,
     passwordVal: passwordInput.value,
     emailVal: emailInput.value,
   };
 
-  // Errors
+  // ERRORS
   //var errorData = [];
   var errorData = {
     validFeedback: 'Looks good!',
@@ -36,48 +37,58 @@ function formValidation(event) {
     emailErrorValid: 'You must use Gmail. Please try again.',
   };
 
-  // Username
+  // USERNAME
   // var usernameVal = usernameInput.value;
   // console.log(usernameVal);
   if (userData.usernameVal === '' || userData.usernameVal.length > 20) {
-    usernameInput.style.border = '1px solid tomato';
+    // usernameInput.style.border = '1px solid tomato';
     // errorData.push('Username too long. Max 20 characters allowed.');
     invalidFeedback.innerText = errorData.usernameErrorValid;
   } else {
-    usernameInput.style.border = '1px solid green';
+    // usernameInput.style.border = '1px solid green';
     validFeedback.innerText = errorData.validFeedback;
   }
 
-  // Password
+  // PASSWORD
   // var passwordVal = passwordInput.value;
   // console.log(passwordVal);
   if (userData.passwordVal != '12345') {
-    passwordInput.style.border = '1px solid tomato';
+    // passwordInput.style.border = '1px solid tomato';
     // errorData.push('Password not correct. Please try again.');
     invalidFeedback.innerText = errorData.passwordErrorValid;
   } else {
-    passwordInput.style.border = '1px solid green';
+    // passwordInput.style.border = '1px solid green';
     validFeedback.innerText = errorData.validFeedback;
   }
 
-  // Email
+  // EMAIL
   // var emailVal = emailInput.value;
   // console.log(emailVal);
   if (userData.emailVal.indexOf('@gmail.com') == -1) {
-    emailInput.style.border = '1px solid tomato';
+    // emailInput.style.border = '1px solid tomato';
     // errorData.push('You must use Gmail.');
     invalidFeedback.innerText = errorData.emailErrorValid;
   } else {
-    emailInput.style.border = '1px solid green';
+    // emailInput.style.border = '1px solid green';
     validFeedback.innerText = errorData.validFeedback;
   }
 
-  // Check for errors
-  if (errorData.length != 0) {
+  // CHECK FOR ERRORS
+
+  // if (errorData.length != 0) {
+  //   event.preventDefault();
+  // } else {
+  //   form.submit();
+  // }
+  
+  if (!form.checkValidity()) {
     event.preventDefault();
+    event.stopPropagation();
+    form.classList.add('was-validated');
   } else {
     form.submit();
   }
+
 }
 
 btn.addEventListener('click', formValidation);
