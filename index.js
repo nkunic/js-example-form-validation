@@ -12,6 +12,8 @@ var emailInput = document.querySelector('input[type="email"]');
 //var btn = document.querySelector('input[type="submit"]');
 var btn = document.querySelector('button');
 var form = document.querySelector('form');
+var validFeedback = document.querySelector('.valid-feedback');
+var invalidFeedback = document.querySelector('.invalid-feedback');
 
 function formValidation(event) {
 
@@ -42,6 +44,7 @@ function formValidation(event) {
     // errorData.push('Username too long. Max 20 characters allowed.');
   } else {
     usernameInput.style.border = '1px solid green';
+    validFeedback.innerText = errorData.validFeedback;
   }
 
   // Password
@@ -52,6 +55,7 @@ function formValidation(event) {
     // errorData.push('Password not correct. Please try again.');
   } else {
     passwordInput.style.border = '1px solid green';
+    validFeedback.innerText = errorData.validFeedback;
   }
 
   // Email
@@ -62,6 +66,7 @@ function formValidation(event) {
     // errorData.push('You must use Gmail.');
   } else {
     emailInput.style.border = '1px solid green';
+    validFeedback.innerText = errorData.validFeedback;
   }
 
   // Check for errors
