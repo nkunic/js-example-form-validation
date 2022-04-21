@@ -67,7 +67,6 @@ function formValidation(event) {
     invalidFeedback[1].style.display = 'block';    
     invalidFeedback[1].innerText = errorData.passwordErrorValid;
   } else {
-    // passwordInput.style.border = '1px solid green';
     passwordInput.style.border = '1px solid green';
     invalidFeedback[1].style.display = 'none';   
     validFeedback[1].style.display = 'block';   
@@ -77,13 +76,20 @@ function formValidation(event) {
   // EMAIL
   // var emailVal = emailInput.value;
   // console.log(emailVal);
-  if (userData.emailVal.indexOf('@gmail.com') == -1) {
-    // emailInput.style.border = '1px solid tomato';
+  if (userData.emailVal === '') {
+    emailInput.style.border = '1px solid tomato';
+    invalidFeedback[2].style.display = 'block';    
+    invalidFeedback[2].innerText = errorData.emailErrorPresent;
+  } else if (userData.emailVal.indexOf('@gmail.com') == -1) {
     // errorData.push('You must use Gmail.');
+    emailInput.style.border = '1px solid tomato';
+    invalidFeedback[2].style.display = 'block';    
     invalidFeedback[2].innerText = errorData.emailErrorValid;
   } else {
-    // emailInput.style.border = '1px solid green';
-    validFeedback.innerText = errorData.validFeedback;
+    emailInput.style.border = '1px solid green';
+    invalidFeedback[2].style.display = 'none';   
+    validFeedback[2].style.display = 'block';   
+    validFeedback[2].innerText = errorData.validFeedback;
   }
 
   // CHECK FOR ERRORS
