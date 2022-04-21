@@ -14,6 +14,7 @@ var btn = document.querySelector('button');
 var form = document.querySelector('form');
 
 function formValidation(event) {
+
   // User data
   var userData = {
     usernameVal: usernameInput.value,
@@ -39,6 +40,8 @@ function formValidation(event) {
   if (userData.usernameVal === '' || userData.usernameVal.length > 20) {
     usernameInput.style.border = '1px solid tomato';
     // errorData.push('Username too long. Max 20 characters allowed.');
+  } else {
+    usernameInput.style.border = '1px solid green';
   }
 
   // Password
@@ -47,6 +50,8 @@ function formValidation(event) {
   if (userData.passwordVal != '12345') {
     passwordInput.style.border = '1px solid tomato';
     // errorData.push('Password not correct. Please try again.');
+  } else {
+    passwordInput.style.border = '1px solid green';
   }
 
   // Email
@@ -55,6 +60,8 @@ function formValidation(event) {
   if (userData.emailVal.indexOf('@gmail.com') == -1) {
     emailInput.style.border = '1px solid tomato';
     // errorData.push('You must use Gmail.');
+  } else {
+    emailInput.style.border = '1px solid green';
   }
 
   // Check for errors
