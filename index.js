@@ -22,14 +22,23 @@ function formValidation(event) {
   };
 
   // Errors
-  var errors = [];
+  //var errorData = [];
+  var errorData = {
+    validFeedback: 'Looks good!',
+    usernameErrorPresent: 'Please enter an Username',
+    usernameErrorValid: 'Username too long. Max 20 characters allowed. Please try again.',
+    passwordErrorPresent: 'Please enter a Password',
+    passwordErrorValid: 'Password not correct. Please try again.',
+    emailErrorPresent: 'Please enter an Email.',
+    emailErrorValid: 'You must use Gmail. Please try again.',
+  };
 
   // Username
   // var usernameVal = usernameInput.value;
   // console.log(usernameVal);
   if (userData.usernameVal === '' || userData.usernameVal.length > 20) {
     usernameInput.style.border = '1px solid tomato';
-    errors.push('Username too long. Max 20 characters allowed.');
+    // errorData.push('Username too long. Max 20 characters allowed.');
   }
 
   // Password
@@ -37,7 +46,7 @@ function formValidation(event) {
   // console.log(passwordVal);
   if (userData.passwordVal != '12345') {
     passwordInput.style.border = '1px solid tomato';
-    errors.push('Password not correct. Please try again.');
+    // errorData.push('Password not correct. Please try again.');
   }
 
   // Email
@@ -45,15 +54,13 @@ function formValidation(event) {
   // console.log(emailVal);
   if (userData.emailVal.indexOf('@gmail.com') == -1) {
     emailInput.style.border = '1px solid tomato';
-    errors.push('You must use Gmail.');
+    // errorData.push('You must use Gmail.');
   }
 
   // Check for errors
-  if (errors.length != 0) {
-    // Has errors: prevent default until form validated
+  if (errorData.length != 0) {
     event.preventDefault();
   } else {
-    // All ok: form submit
     form.submit();
   }
 }
