@@ -11,11 +11,10 @@ var emailInput = document.querySelector('input[type="email"]');
 //var btn = document.querySelector('input[type="submit"]');
 var btn = document.querySelector('button');
 var form = document.querySelector('.needs-validation');
-var validFeedback = document.querySelector('.valid-feedback');
+var validFeedback = document.querySelectorAll('.valid-feedback');
 var invalidFeedback = document.querySelectorAll('.invalid-feedback');
 
 function formValidation(event) {
-
   // USER DATA
   var userData = {
     usernameVal: usernameInput.value,
@@ -39,25 +38,31 @@ function formValidation(event) {
   // USERNAME
   // var usernameVal = usernameInput.value;
   // console.log(usernameVal);
-  if (userData.usernameVal === '' || userData.usernameVal.length > 20) {
-    // usernameInput.style.border = '1px solid tomato';
-    // errorData.push('Username too long. Max 20 characters allowed.');
+  if (userData.usernameVal === '') {
+    invalidFeedback[0].innerText = errorData.usernameErrorPresent;
+  } else if (userData.usernameVal.length > 20) {
+    // errorData.push('Username too long. Max 20 characters allowed.');    
+    usernameInput.style.border = '1px solid tomato';
     invalidFeedback[0].innerText = errorData.usernameErrorValid;
   } else {
     // usernameInput.style.border = '1px solid green';
-    validFeedback.innerText = errorData.validFeedback;
+    validFeedback[0].innerText = errorData.validFeedback;
   }
 
   // PASSWORD
   // var passwordVal = passwordInput.value;
   // console.log(passwordVal);
-  if (userData.passwordVal != '12345') {
-    // passwordInput.style.border = '1px solid tomato';
+  if (userData.passwordVal === '') {
+    invalidFeedback[1].innerText = errorData.passwordErrorPresent;
+  } else if (userData.passwordVal !== '' && userData.passwordVal != '12345') {
     // errorData.push('Password not correct. Please try again.');
+    invalidFeedback[1].style.display = 'block';
+    passwordInput.style.border = '1px solid tomato';
+    passwordInput.setCustomValidity(error);
     invalidFeedback[1].innerText = errorData.passwordErrorValid;
   } else {
     // passwordInput.style.border = '1px solid green';
-    validFeedback.innerText = errorData.validFeedback;
+    validFeedback[1].innerText = errorData.validFeedback;
   }
 
   // EMAIL
@@ -79,7 +84,7 @@ function formValidation(event) {
   // } else {
   //   form.submit();
   // }
-  
+
   if (!form.checkValidity()) {
     event.preventDefault();
     event.stopPropagation();
@@ -87,7 +92,6 @@ function formValidation(event) {
   } else {
     form.submit();
   }
-
 }
 
 btn.addEventListener('click', formValidation);
