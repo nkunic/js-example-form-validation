@@ -10,7 +10,7 @@ var passwordInput = document.querySelector('input[type="password"]');
 var emailInput = document.querySelector('input[type="email"]');
 //var btn = document.querySelector('input[type="submit"]');
 var btn = document.querySelector('button');
-var form = document.querySelector('.needs-validation');
+var form = document.querySelector('form');
 var validFeedback = document.querySelectorAll('.valid-feedback');
 var invalidFeedback = document.querySelectorAll('.invalid-feedback');
 
@@ -39,13 +39,18 @@ function formValidation(event) {
   // var usernameVal = usernameInput.value;
   // console.log(usernameVal);
   if (userData.usernameVal === '') {
+    usernameInput.style.border = '1px solid tomato';
+    invalidFeedback[0].style.display = 'block';    
     invalidFeedback[0].innerText = errorData.usernameErrorPresent;
   } else if (userData.usernameVal.length > 20) {
-    // errorData.push('Username too long. Max 20 characters allowed.');    
+    // errorData.push('Username too long. Max 20 characters allowed.');
     usernameInput.style.border = '1px solid tomato';
+    invalidFeedback[0].style.display = 'block';    
     invalidFeedback[0].innerText = errorData.usernameErrorValid;
   } else {
-    // usernameInput.style.border = '1px solid green';
+    usernameInput.style.border = '1px solid green';
+    invalidFeedback[0].style.display = 'none';   
+    validFeedback[0].style.display = 'block';   
     validFeedback[0].innerText = errorData.validFeedback;
   }
 
@@ -53,15 +58,19 @@ function formValidation(event) {
   // var passwordVal = passwordInput.value;
   // console.log(passwordVal);
   if (userData.passwordVal === '') {
+    passwordInput.style.border = '1px solid tomato';
+    invalidFeedback[1].style.display = 'block';    
     invalidFeedback[1].innerText = errorData.passwordErrorPresent;
   } else if (userData.passwordVal !== '' && userData.passwordVal != '12345') {
     // errorData.push('Password not correct. Please try again.');
-    invalidFeedback[1].style.display = 'block';
     passwordInput.style.border = '1px solid tomato';
-    passwordInput.setCustomValidity(error);
+    invalidFeedback[1].style.display = 'block';    
     invalidFeedback[1].innerText = errorData.passwordErrorValid;
   } else {
     // passwordInput.style.border = '1px solid green';
+    passwordInput.style.border = '1px solid green';
+    invalidFeedback[1].style.display = 'none';   
+    validFeedback[1].style.display = 'block';   
     validFeedback[1].innerText = errorData.validFeedback;
   }
 
@@ -85,13 +94,13 @@ function formValidation(event) {
   //   form.submit();
   // }
 
-  if (!form.checkValidity()) {
-    event.preventDefault();
-    event.stopPropagation();
-    form.classList.add('was-validated');
-  } else {
-    form.submit();
-  }
+  // if (!form.checkValidity()) {
+  //   event.preventDefault();
+  //   event.stopPropagation();
+  //   form.classList.add('was-validated');
+  // } else {
+  //   form.submit();
+  // }
 }
 
 btn.addEventListener('click', formValidation);
