@@ -1,7 +1,6 @@
-// Import stylesheets
+// Import stylesheets & scripts
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
-
 import './css/style.css';
 
 // Write Javascript code!
@@ -13,7 +12,7 @@ var emailInput = document.querySelector('input[type="email"]');
 var btn = document.querySelector('button');
 var form = document.querySelector('.needs-validation');
 var validFeedback = document.querySelector('.valid-feedback');
-var invalidFeedback = document.querySelector('.invalid-feedback');
+var invalidFeedback = document.querySelectorAll('.invalid-feedback');
 
 function formValidation(event) {
 
@@ -43,7 +42,7 @@ function formValidation(event) {
   if (userData.usernameVal === '' || userData.usernameVal.length > 20) {
     // usernameInput.style.border = '1px solid tomato';
     // errorData.push('Username too long. Max 20 characters allowed.');
-    invalidFeedback.innerText = errorData.usernameErrorValid;
+    invalidFeedback[0].innerText = errorData.usernameErrorValid;
   } else {
     // usernameInput.style.border = '1px solid green';
     validFeedback.innerText = errorData.validFeedback;
@@ -55,7 +54,7 @@ function formValidation(event) {
   if (userData.passwordVal != '12345') {
     // passwordInput.style.border = '1px solid tomato';
     // errorData.push('Password not correct. Please try again.');
-    invalidFeedback.innerText = errorData.passwordErrorValid;
+    invalidFeedback[1].innerText = errorData.passwordErrorValid;
   } else {
     // passwordInput.style.border = '1px solid green';
     validFeedback.innerText = errorData.validFeedback;
@@ -67,7 +66,7 @@ function formValidation(event) {
   if (userData.emailVal.indexOf('@gmail.com') == -1) {
     // emailInput.style.border = '1px solid tomato';
     // errorData.push('You must use Gmail.');
-    invalidFeedback.innerText = errorData.emailErrorValid;
+    invalidFeedback[2].innerText = errorData.emailErrorValid;
   } else {
     // emailInput.style.border = '1px solid green';
     validFeedback.innerText = errorData.validFeedback;
